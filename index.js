@@ -1,7 +1,7 @@
 
 import fs  from "fs";
 import sharp from "sharp";
-import { getConfigLayers } from "./configLayers.js";
+import { getConfigLayersHuman_Black_Man } from "./configLayers.js";
 import { checkConditionalsHumans } from "./conditionals.js";
 
 const selectRandomLayer = async ( config ) => {
@@ -12,27 +12,28 @@ const selectRandomLayer = async ( config ) => {
 	const checkLayers = [];
 	let created = 0;
 	let exculded;
-	// config.layers.map(( layer ) => {
 	while(config.layers.length > created ){
 		let layerFolder;
 		let randomLayer;
 		let chosenLayer;
 		let rarity;
+		let layerWeight;
 		layerFolder = fs.readdirSync(config.root_folder+config.collection+config.series+config.layers[created].path);
 		randomLayer = layerFolder[Math.floor(Math.random() * layerFolder.length)];
-		chosenLayer = randomLayer.split(/[#.]+/)[0] 
-		await checkLayers.push(chosenLayer);
+		chosenLayer = randomLayer.split(/[#.]+/)[0]
+		layerWeight = randomLayer.split(/[#.]+/)[1]
+		await checkLayers.push();
 		// console.log("checkLayers", checkLayers);
 		exculded = await checkConditionalsHumans(chosenLayer, checkLayers);
-		/// console.log("exculded", exculded)
-		if(exculded === undefined) await attributes.push({ [config.layers[created].options.displayName]: chosenLayer });
-		if(exculded === undefined) await combineLayers.push(config.root_folder+config.collection+config.series+config.layers[created].path+"/"+randomLayer);
-		if(exculded === undefined) await created++;
+		// console.log("exculded", exculded)		
+		rarity = await checkRarity(layerWeight, config.layers[created].totalWeight);
+		// console.log("rarity", rarity);
+		if( exculded === undefined && rarity === true ) await attributes.push({ [config.layers[created].options.displayName]: chosenLayer });
+		if( exculded === undefined && rarity === true ) await combineLayers.push(config.root_folder+config.collection+config.series+config.layers[created].path+"/"+randomLayer);
+		if( exculded === undefined && rarity === true ) await created++;
 		// console.log("randomLayer", layer.options.displayName+ ":" +randomLayer);
 		// console.log("layerFolder", layerFolder[randomLayer])
-	};
-	// });
-	
+	};	
 	return({
 		...config,
 		attributes,
@@ -60,13 +61,16 @@ const checkDuplicate = async (  ) => {
 
 };
 
-const checkRarity = async ( attribute, totalWeight ) => {
-	
-}
+const checkRarity = async ( attributeWeight, totalWeight ) => {
+	// return(attributeWeight + " | " + totalWeight)
+	let random = Math.floor(Math.random() * totalWeight);
+	random -= attributeWeight;
+	return(random < 0);
+};
 
 const run = async () => {
 	let finished = 0;
-	const config = await getConfigLayers();
+	const config = await getConfigLayersHuman_Black_Man();
 	// console.log("config", config);
 	await checkForBuildDir(config);
 	while( config.amount > finished ){
