@@ -15,5 +15,5 @@ Now you can build a function, that will check if specified layer/attribute has b
 
 ***Woking On***<br />
 Finish weight system;
-
 Finish check for duplicate DNA;
+Metadata generator;
