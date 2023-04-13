@@ -14,6 +14,6 @@ Now you can build a function, that will check if specified layer/attribute has b
 <hr />
 
 ***Woking On***<br />
-Finish weight system;
-Finish check for duplicate DNA;
+Finish weight system;<br />
+Finish check for duplicate DNA;<br />
 Metadata generator;
