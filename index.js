@@ -22,6 +22,7 @@ const selectRandomLayer = async ( config ) => {
 		randomLayer = layerFolder[Math.floor(Math.random() * layerFolder.length)];
 		chosenLayer = randomLayer.split(/[#.]+/)[0]
 		layerWeight = randomLayer.split(/[#.]+/)[1]
+		// console.log("layerWeight", layerWeight)
 		await checkLayers.push();
 		// console.log("checkLayers", checkLayers);
 		exculded = await checkConditionalsHumans(chosenLayer, checkLayers);
@@ -62,7 +63,8 @@ const checkDuplicate = async (  ) => {
 };
 
 const checkRarity = async ( attributeWeight, totalWeight ) => {
-	// return(attributeWeight + " | " + totalWeight)
+	// console.log("attributeWeight", attributeWeight);
+	if(!isNaN(attributeWeight)) attributeWeight = 1;
 	let random = Math.floor(Math.random() * totalWeight);
 	random -= attributeWeight;
 	return(random < 0);
@@ -75,7 +77,7 @@ const run = async () => {
 	await checkForBuildDir(config);
 	while( config.amount > finished ){
 		const selectedLayers = await selectRandomLayer(config);
-		console.log("selectedLayers", selectedLayers);
+		// console.log("selectedLayers", selectedLayers);
 		await combineLayers(selectedLayers, finished);
 		console.log("created: " + config.series + " | " + finished + " of: " + config.amount);
 		finished++;
