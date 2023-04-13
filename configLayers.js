@@ -1,10 +1,27 @@
 
 export const getConfigLayersHuman_Black_Man = async () => {
-	const root_folder = "./layers/"
-	const collection = "cryptonauts/"
-	const series = "Human_Black_Man/"
-	const start = 0
+
+	const network = "dot";
+  const root_folder = "./layers/";
+	const collection = "cryptonauts/";
+	const series = "Human_Black_Man/";
+  const name = "HumanMan";
+  const description = "Humans Shift.";
+  const uri = "ipfs";
+	const start = 0;
 	const amount = 100;
+  let metadata = {};
+
+  if( network === "dot"){
+    metadata = {
+      "name": name,
+      "description": description,
+      "image": "ipfs://"+uri+"/0.png",
+      "edition": 0,
+      "season": "1",
+      "attributes": []      
+    }
+  }
 
 	const layers = [
       { 
@@ -112,6 +129,7 @@ export const getConfigLayersHuman_Black_Man = async () => {
 		collection,
 		series,
 		amount,
+    metadata,
 		layers
 	})
 };

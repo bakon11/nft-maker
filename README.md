@@ -13,7 +13,6 @@ Insted of running a NFT generator over and over with different file structures e
 Now you can build a function, that will check if specified layer/attribute has ben selected and what it can or can't be used with.<br />
 <hr />
 
-***Woking On***<br />
-Finish weight system;<br />
+***Working On***<br />
 Finish check for duplicate DNA;<br />
 Metadata generator;
