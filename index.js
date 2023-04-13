@@ -18,6 +18,7 @@ const generateLayers = async ( config ) => {
 		let chosenLayer;
 		let rarity;
 		let layerWeight;
+		let totalWeight;
 		layerFolder = fs.readdirSync(config.root_folder+config.collection+config.series+config.layers[created].path);
 		randomLayer = layerFolder[Math.floor(Math.random() * layerFolder.length)];
 		chosenLayer = randomLayer.split(/[#.]+/)[0]
@@ -26,14 +27,15 @@ const generateLayers = async ( config ) => {
 		await checkLayers.push();
 		// console.log("checkLayers", checkLayers);
 		exculded = await checkConditionalsHumans(chosenLayer, checkLayers);
-		// console.log("exculded", exculded)		
-		rarity = await checkRarity(layerWeight, config.layers[created].totalWeight);
+		// console.log("exculded", exculded)
+		totalWeight = config.layers[created].totalWeight;
+		rarity = await checkRarity(layerWeight, totalWeight);
 		// console.log("rarity", rarity);
 		if( exculded === undefined && rarity === true ) await attributes.push({ "trait_type": config.layers[created].options.displayName, "value": chosenLayer });
 		if( exculded === undefined && rarity === true ) await combineLayers.push(config.root_folder+config.collection+config.series+config.layers[created].path+"/"+randomLayer);
 		if( exculded === undefined && rarity === true ) await created++;
 		// console.log("randomLayer", layer.options.displayName+ ":" +randomLayer);
-		// console.log("layerFolder", layerFolder[randomLayer])
+		console.log("layerFolder", layerFolder.length)
 	};	
 	return({
 		...config,
@@ -78,8 +80,11 @@ const checkRarity = async ( attributeWeight, totalWeight ) => {
 
 const generateMetadata = async ( layers, finished ) => {
 	console.log("generateMetadata", layers.metadata.name);
+	let padding = 5;
+	const zeroPad = (num, places) => String(num).padStart(places, '0')
+	let paddedNum =  await zeroPad(finished, padding)
 	const newMetadata = {
-		"name": layers.metadata.name+finished,
+		"name": layers.metadata.name+paddedNum,
 	  "description": layers.metadata.description,
 	  "image": layers.metadata.image,
 	  "edition": layers.metadata.edition,
