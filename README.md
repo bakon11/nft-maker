@@ -15,4 +15,3 @@ Now you can build a function, that will check if specified layer/attribute has b
 
 ***Working On***<br />
 Finish check for duplicate DNA;<br />
-Metadata generator;

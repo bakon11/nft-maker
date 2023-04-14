@@ -8,11 +8,11 @@ export const getConfigLayersHuman_Black_Man = async () => {
   const name = "HumanMan";
   const description = "Humans Shift.";
   const uri = "ipfs";
-	const start = 0;
+	const start = 900;
 	const amount = 100;
   let metadata = {};
 
-  if( network === "dot"){
+  if( network === "dot" || network === "eth" ){
     metadata = {
       "name": name,
       "description": description,
@@ -128,6 +128,7 @@ export const getConfigLayersHuman_Black_Man = async () => {
 		root_folder,
 		collection,
 		series,
+    start,
 		amount,
     metadata,
 		layers

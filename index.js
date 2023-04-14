@@ -1,5 +1,5 @@
-
 import fs  from "fs";
+import { createHash } from 'node:crypto'
 import sharp from "sharp";
 import { getConfigLayersHuman_Black_Man } from "./configLayers.js";
 import { checkConditionalsHumans } from "./conditionals.js";
@@ -10,16 +10,16 @@ const generateLayers = async ( config ) => {
 	const attributes = [];
 	const combineLayers = [];
 	const checkLayers = [];
-	let created = 0;
+	let layer = 0;
 	let exculded;
-	while(config.layers.length > created ){
+	while(config.layers.length > layer ){
 		let layerFolder;
 		let randomLayer;
 		let chosenLayer;
 		let rarity;
 		let layerWeight;
 		let totalWeight;
-		layerFolder = fs.readdirSync(config.root_folder+config.collection+config.series+config.layers[created].path);
+		layerFolder = fs.readdirSync(config.root_folder+config.collection+config.series+config.layers[layer].path);
 		randomLayer = layerFolder[Math.floor(Math.random() * layerFolder.length)];
 		chosenLayer = randomLayer.split(/[#.]+/)[0]
 		layerWeight = randomLayer.split(/[#.]+/)[1]
@@ -28,14 +28,14 @@ const generateLayers = async ( config ) => {
 		// console.log("checkLayers", checkLayers);
 		exculded = await checkConditionalsHumans(chosenLayer, checkLayers);
 		// console.log("exculded", exculded)
-		totalWeight = config.layers[created].totalWeight;
+		totalWeight = config.layers[layer].totalWeight;
 		rarity = await checkRarity(layerWeight, totalWeight);
 		// console.log("rarity", rarity);
-		if( exculded === undefined && rarity === true ) await attributes.push({ "trait_type": config.layers[created].options.displayName, "value": chosenLayer });
-		if( exculded === undefined && rarity === true ) await combineLayers.push(config.root_folder+config.collection+config.series+config.layers[created].path+"/"+randomLayer);
-		if( exculded === undefined && rarity === true ) await created++;
+		if( exculded === undefined && rarity === true ) await attributes.push({ "trait_type": config.layers[layer].options.displayName, "value": chosenLayer });
+		if( exculded === undefined && rarity === true ) await combineLayers.push(config.root_folder+config.collection+config.series+config.layers[layer].path+"/"+randomLayer);
+		if( exculded === undefined && rarity === true ) await layer++;
 		// console.log("randomLayer", layer.options.displayName+ ":" +randomLayer);
-		console.log("layerFolder", layerFolder.length)
+		// console.log("layerFolder", layerFolder.length)
 	};	
 	return({
 		...config,
@@ -63,11 +63,28 @@ const checkForBuildDir = async ( config ) => {
 	};
 	if (!fs.existsSync("./build/"+config.collection+config.series+"json/")){
     fs.mkdirSync("./build/"+config.collection+config.series+"json/");
-	};		
+	};
+	if (!fs.existsSync("./build/"+config.collection+config.series+"generated/")){
+    fs.mkdirSync("./build/"+config.collection+config.series+"generated/");
+	};
+	if (!fs.existsSync("./build/"+config.collection+config.series+"generated/generated.json")){
+    const generated = [];
+    fs.writeFileSync("./build/"+config.collection+config.series+"generated/generated.json", JSON.stringify(generated));
+	};	
+
 };
 
-const checkDuplicate = async (  ) => {
-
+const checkDuplicate = async ( selectedLayers ) => {
+	// console.log(selectedLayers)
+	const dna = createHash('sha256').update(selectedLayers.combineLayers.toString()).digest('hex')
+	console.log("dna", dna);
+	const generatedFile = fs.readFileSync("./build/"+selectedLayers.collection+selectedLayers.series+"generated/generated.json");
+	const generated = JSON.parse(generatedFile);
+	const exists = generated.includes(dna);
+	if( exists === false ) await generated.push(dna);
+	if( exists === false ) fs.writeFileSync("./build/"+selectedLayers.collection+selectedLayers.series+"generated/generated.json", JSON.stringify(generated));
+	console.log("exists", exists);
+	return(exists);
 };
 
 const checkRarity = async ( attributeWeight, totalWeight ) => {
@@ -105,17 +122,19 @@ const generateMetadata = async ( layers, finished ) => {
 };
 
 const run = async () => {
-	let finished = 0;
 	const config = await getConfigLayersHuman_Black_Man();
-	// console.log("config", config);
+	console.log("config", config);
+	let finished = config.start;
+	let amount = config.amount + config.start;
 	await checkForBuildDir(config);
-	while( config.amount > finished ){
+	while( amount > finished ){
 		const selectedLayers = await generateLayers(config);
 		// console.log("selectedLayers", selectedLayers);
-		await combineLayers(selectedLayers, finished);
-		await generateMetadata(selectedLayers, finished);
-		console.log("created: " + config.series + " | " + finished + " of: " + config.amount);
-		finished++;
+		const checkDuplicateRes = await checkDuplicate(selectedLayers)
+		if( checkDuplicateRes === false ) await combineLayers(selectedLayers, finished);
+		if( checkDuplicateRes === false ) await generateMetadata(selectedLayers, finished);
+		if( checkDuplicateRes === false ) console.log("created: " + config.series + " | " + finished + " of: " + amount + "\n###############################################################\n");
+		if( checkDuplicateRes === false ) finished++;
 	};
 	return;
 };

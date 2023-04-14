@@ -32,7 +32,6 @@ export const checkConditionalsHumans = async ( chosenLayer, chosenLayers ) => {
 		return(check);
 	};	
 
-
 	// Hats contiuned
 	const facialHair = [ "Dali", "Fu_Manchu", "Goatee", "Jaw_Beard", "Lumberjack", "Mr_Selleck", "Mutton_Chops", "Pirate", "Strongman", "The_Creep", "The_Wizard" ];
   if(chosenLayer === "Diving_Bell"){
