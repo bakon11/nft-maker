@@ -88,8 +88,8 @@ const checkDuplicate = async ( selectedLayers ) => {
 };
 
 const checkRarity = async ( attributeWeight, totalWeight ) => {
-	// console.log("attributeWeight", attributeWeight);
-	if(!isNaN(attributeWeight)) attributeWeight = 1;
+	console.log("attributeWeight", attributeWeight);
+	if( attributeWeight === "png" ) attributeWeight = 1;
 	let random = Math.floor(Math.random() * totalWeight);
 	random -= attributeWeight;
 	return(random < 0);
@@ -123,18 +123,22 @@ const generateMetadata = async ( layers, finished ) => {
 
 const run = async () => {
 	const config = await getConfigLayersHuman_Black_Man();
-	console.log("config", config);
-	let finished = config.start;
+	// console.log("config", config);
 	let amount = config.amount + config.start;
+	console.log("amount", +amount);
+	let finished = config.start;
+	console.log("finished", +finished);
 	await checkForBuildDir(config);
-	while( amount > finished ){
+	while( +finished < +amount ){
+		console.log("Starting", finished)
 		const selectedLayers = await generateLayers(config);
-		// console.log("selectedLayers", selectedLayers);
+		console.log("selectedLayers", selectedLayers);
 		const checkDuplicateRes = await checkDuplicate(selectedLayers)
 		if( checkDuplicateRes === false ) await combineLayers(selectedLayers, finished);
 		if( checkDuplicateRes === false ) await generateMetadata(selectedLayers, finished);
 		if( checkDuplicateRes === false ) console.log("created: " + config.series + " | " + finished + " of: " + amount + "\n###############################################################\n");
 		if( checkDuplicateRes === false ) finished++;
+		// console.log("finished after", finished);
 	};
 	return;
 };

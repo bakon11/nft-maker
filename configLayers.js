@@ -8,8 +8,8 @@ export const getConfigLayersHuman_Black_Man = async () => {
   const name = "HumanMan";
   const description = "Humans Shift.";
   const uri = "ipfs";
-	const start = 900;
-	const amount = 100;
+	const start = 207;
+	const amount = 1093;
   let metadata = {};
 
   if( network === "dot" || network === "eth" ){
