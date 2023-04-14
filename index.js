@@ -5,7 +5,7 @@ import { getConfigLayersHumans } from "./configLayers.js";
 import { checkConditionalsHumans } from "./conditionals.js";
 
 const generateLayers = async ( config ) => {
-	console.log("Selecting Layers")
+	// console.log("Selecting Layers")
 	const attributes = [];
 	const combineLayers = [];
 	const checkLayers = [];
@@ -122,11 +122,13 @@ const run = async () => {
 		let checkDuplicateRes;
 		const selectedLayers = await generateLayers(config);
 		exculded = await checkConditionalsHumans(selectedLayers);
+		if( checkDuplicateRes === false && exculded === false ) console.log("\n###############################################################\n");
 		if( exculded === false ) checkDuplicateRes = await checkDuplicate(selectedLayers);
 		if( checkDuplicateRes === false && exculded === false ) await combineLayers(selectedLayers, finished);
 		if( checkDuplicateRes === false && exculded === false ) await generateMetadata(selectedLayers, finished);
-		if( checkDuplicateRes === false && exculded === false ) console.log("created: " + config.series + " | " + finished + " of: " + amount + "\n###############################################################\n");
+		if( checkDuplicateRes === false && exculded === false ) console.log("created: " + config.series + " | " + finished + " of: " + amount);
 		if( checkDuplicateRes === false && exculded === false ) finished++;
+		if( checkDuplicateRes === false && exculded === false ) console.log("\n###############################################################\n");
 	};
 	return;
 };
