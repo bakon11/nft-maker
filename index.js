@@ -1,12 +1,11 @@
 import fs  from "fs";
 import { createHash } from 'node:crypto'
 import sharp from "sharp";
-import { getConfigLayersHuman_Black_Man } from "./configLayers.js";
+import { getConfigLayersHumans } from "./configLayers.js";
 import { checkConditionalsHumans } from "./conditionals.js";
 
 const generateLayers = async ( config ) => {
-	// console.log("selectRandomLayer config", config.layers.length);
-	// console.log("select Layer config", config);
+	console.log("Selecting Layers")
 	const attributes = [];
 	const combineLayers = [];
 	const checkLayers = [];
@@ -21,31 +20,24 @@ const generateLayers = async ( config ) => {
 		let totalWeight;
 		layerFolder = fs.readdirSync(config.root_folder+config.collection+config.series+config.layers[layer].path);
 		randomLayer = layerFolder[Math.floor(Math.random() * layerFolder.length)];
-		chosenLayer = randomLayer.split(/[#.]+/)[0]
-		layerWeight = randomLayer.split(/[#.]+/)[1]
-		// console.log("layerWeight", layerWeight)
-		await checkLayers.push();
-		// console.log("checkLayers", checkLayers);
-		exculded = await checkConditionalsHumans(chosenLayer, checkLayers);
-		// console.log("exculded", exculded)
+		chosenLayer = randomLayer.split(/[#.]+/)[0];
+		layerWeight = randomLayer.split(/[#.]+/)[1];
 		totalWeight = config.layers[layer].totalWeight;
 		rarity = await checkRarity(layerWeight, totalWeight);
-		// console.log("rarity", rarity);
-		if( exculded === undefined && rarity === true ) await attributes.push({ "trait_type": config.layers[layer].options.displayName, "value": chosenLayer });
-		if( exculded === undefined && rarity === true ) await combineLayers.push(config.root_folder+config.collection+config.series+config.layers[layer].path+"/"+randomLayer);
-		if( exculded === undefined && rarity === true ) await layer++;
-		// console.log("randomLayer", layer.options.displayName+ ":" +randomLayer);
-		// console.log("layerFolder", layerFolder.length)
+		if( rarity === true ) await checkLayers.push(chosenLayer);
+		if( rarity === true ) await attributes.push({ "trait_type": config.layers[layer].options.displayName, "value": chosenLayer });
+		if( rarity === true ) await combineLayers.push(config.root_folder+config.collection+config.series+config.layers[layer].path+"/"+randomLayer);
+		if( rarity === true ) await layer++;
 	};	
 	return({
 		...config,
 		attributes,
+		checkLayers,
 		combineLayers
 	});
 };
 
 const combineLayers = async ( layers, finished ) => {
-	// console.log("combineLayers", layers.combineLayers);
 	const inputLayers = [...layers.combineLayers].map(file => ({ input: file }))
 	await sharp(inputLayers[0].input).composite(inputLayers).png({compressionLevel: 9, effort: 1}).resize(3000, 3000).toFile("./build/"+layers.collection+layers.series+"images/"+finished+".png");
 	return;
@@ -75,8 +67,7 @@ const checkForBuildDir = async ( config ) => {
 };
 
 const checkDuplicate = async ( selectedLayers ) => {
-	// console.log(selectedLayers)
-	const dna = createHash('sha256').update(selectedLayers.combineLayers.toString()).digest('hex')
+	const dna = createHash('sha256').update(selectedLayers.checkLayers.toString()).digest('hex')
 	console.log("dna", dna);
 	const generatedFile = fs.readFileSync("./build/"+selectedLayers.collection+selectedLayers.series+"generated/generated.json");
 	const generated = JSON.parse(generatedFile);
@@ -88,7 +79,6 @@ const checkDuplicate = async ( selectedLayers ) => {
 };
 
 const checkRarity = async ( attributeWeight, totalWeight ) => {
-	console.log("attributeWeight", attributeWeight);
 	if( attributeWeight === "png" ) attributeWeight = 1;
 	let random = Math.floor(Math.random() * totalWeight);
 	random -= attributeWeight;
@@ -96,14 +86,13 @@ const checkRarity = async ( attributeWeight, totalWeight ) => {
 };
 
 const generateMetadata = async ( layers, finished ) => {
-	console.log("generateMetadata", layers.metadata.name);
 	let padding = 5;
 	const zeroPad = (num, places) => String(num).padStart(places, '0')
 	let paddedNum =  await zeroPad(finished, padding)
 	const newMetadata = {
 		"name": layers.metadata.name+paddedNum,
 	  "description": layers.metadata.description,
-	  "image": layers.metadata.image,
+	  "image":  "ipfs://CID/"+finished+".png",
 	  "edition": layers.metadata.edition,
 	  "season": layers.metadata.season,
 	  "attributes": [
@@ -122,23 +111,22 @@ const generateMetadata = async ( layers, finished ) => {
 };
 
 const run = async () => {
-	const config = await getConfigLayersHuman_Black_Man();
-	// console.log("config", config);
+	const config = await getConfigLayersHumans();
 	let amount = config.amount + config.start;
 	console.log("amount", +amount);
 	let finished = config.start;
 	console.log("finished", +finished);
 	await checkForBuildDir(config);
 	while( +finished < +amount ){
-		console.log("Starting", finished)
+		let exculded;
+		let checkDuplicateRes;
 		const selectedLayers = await generateLayers(config);
-		console.log("selectedLayers", selectedLayers);
-		const checkDuplicateRes = await checkDuplicate(selectedLayers)
-		if( checkDuplicateRes === false ) await combineLayers(selectedLayers, finished);
-		if( checkDuplicateRes === false ) await generateMetadata(selectedLayers, finished);
-		if( checkDuplicateRes === false ) console.log("created: " + config.series + " | " + finished + " of: " + amount + "\n###############################################################\n");
-		if( checkDuplicateRes === false ) finished++;
-		// console.log("finished after", finished);
+		exculded = await checkConditionalsHumans(selectedLayers);
+		if( exculded === false ) checkDuplicateRes = await checkDuplicate(selectedLayers);
+		if( checkDuplicateRes === false && exculded === false ) await combineLayers(selectedLayers, finished);
+		if( checkDuplicateRes === false && exculded === false ) await generateMetadata(selectedLayers, finished);
+		if( checkDuplicateRes === false && exculded === false ) console.log("created: " + config.series + " | " + finished + " of: " + amount + "\n###############################################################\n");
+		if( checkDuplicateRes === false && exculded === false ) finished++;
 	};
 	return;
 };
