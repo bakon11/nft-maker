@@ -1,0 +1,164 @@
+[
+	{
+		"included": "Demon_Cloak_Collar",
+		"excluded": [ 
+			"Admiral", "Aristocrat", "Bomber_Jacket", "Clown_Shirt", "Count_Cape", "Dashiki", "Doctor_Coat", "Hawaiian", "Hillbilly", "Hoodie", "Leather_Jacket", "Old_Admiral", "Overalls", "Ranger_Cloak", "Risky_Business", "Star_Journey",
+			"Street_Racer", "Tie_Dye", "Turtle_Neck", "Velvet_Blazer", "Wetsuit", "Wizard_Robe" 
+		]
+	},
+	{
+		"included": "Mutton_Chops",
+		"excluded": [ 
+			"Afro", "Arrow", "Beehive", "Birthmark", "Black_Long_Dreads", "Bomber_Cap", "Bomber_Cap_Long", "Bomber_Cap_Black_Long_Dreads", "Brown_Long_Dreads", "Buzz_Cut", "Captain", "Captain_Cornrows", "Captain_Minoan", "Chopped", "Cobra_Crown", "Cornrows", 
+	    "Cowboy_Hat_Black_Long_Dreads", "Cypher_Punk", "Derby", "Derby_Black_Long_Dreads", "Derby_Long", "Diving_Bell", "Emo", "Fez_Long", "First_Mate", "First_Mate_Long_Dreads", "Flock_of_Seagulls", "Halo", "Headband", "Headband_Long", "Helmet_Head", 
+	    "Hopi_Headdress", "Horns", "Jeweled_Crown", "Jeweled_Diadem", "Long", "Long_Black_Hair", "Minoan", "Miss_Antoinette", "Nurse", "Rastafari", "Rastafari_Brown_Long_Dreads", "Rockabilly", "Saiyan", "Shaggy", "Ship_Master", "Short_Dreads", "Steam_Phunk", 
+	    "Steam_Phunk_Black_Long_Dreads", "Steam_Phunk_Brown_Long_Dreads", "Superman", "Top_Dreads", "Top_Hat_Long", "Top_Hat_Long_Black_Dreads", "Tricorn", "Vajra_Crown", "Visko_Helmet_Long", "Visko_Helmet_Pink", "Witch_Hat", "Witch_Hat_Black_Long_Dreads", 
+	    "Wizard_Cap", "Wizard_Cap_Minoan", "Woodland_Fae", "Woodland_Fae_Minoan", "Woodland_Fae_Black_Long_Dreads" 
+	  ]
+	},
+	{
+		"included": "Necklace",
+		"excluded": [ "Aristocrat", "Bomber_Jacket", "Doctor_Coat", "Count_Cape", "Leather_Jacket", "Risky_Business", "Street_Racer", "Ranger_Cloak", "Turtle_Neck", "Velvet_Blazer", "Wizard_Robe" ]
+	},
+	{
+		"included": "Visko_Helmet",
+		"excluded": [ "3D_Glasses", "Aviators", "Black_Night_Vision_Goggles", "Cardanos", "Coke_Bottle", "Eye_Patch", "Glass_Eye", "Laser", "Laser_Beams", "Monocle", "Sextant", "Snorkel_and_Goggles", "Spyglass", "X_Ray_Specs" ]
+	},
+	{
+		"included": "Visko_Helmet_Long",
+		"excluded": [ "3D_Glasses", "Aviators", "Black_Night_Vision_Goggles", "Cardanos", "Coke_Bottle", "Eye_Patch", "Glass_Eye", "Laser", "Laser_Beams", "Monocle", "Sextant", "Snorkel_and_Goggles", "Spyglass", "X_Ray_Specs" ]
+	},
+	{
+		"included": "Visko_Helmet_Pink",
+		"excluded": [ "3D_Glasses", "Aviators", "Black_Night_Vision_Goggles", "Cardanos", "Coke_Bottle", "Eye_Patch", "Glass_Eye", "Laser", "Laser_Beams", "Monocle", "Sextant", "Snorkel_and_Goggles", "Spyglass", "X_Ray_Specs" ]
+	},
+	{
+		"included": "Steam_Phunk",
+		"excluded": [ "3D_Glasses", "Aviators", "Black_Night_Vision_Goggles", "Cardanos", "Coke_Bottle", "Eye_Patch", "Glass_Eye", "Laser", "Laser_Beams", "Monocle", "Sextant", "Snorkel_and_Goggles", "Spyglass", "X_Ray_Specs" ]
+	},
+	{
+		"included": "Steam_Phunk_Black_Long_Dreads",
+		"excluded": [ "3D_Glasses", "Aviators", "Black_Night_Vision_Goggles", "Cardanos", "Coke_Bottle", "Eye_Patch", "Glass_Eye", "Laser", "Laser_Beams", "Monocle", "Sextant", "Snorkel_and_Goggles", "Spyglass", "X_Ray_Specs" ]
+	},
+	{
+		"included": "Steam_Phunk_Brown_Long_Dreads",
+		"excluded": [ "3D_Glasses", "Aviators", "Black_Night_Vision_Goggles", "Cardanos", "Coke_Bottle", "Eye_Patch", "Glass_Eye", "Laser", "Laser_Beams", "Monocle", "Sextant", "Snorkel_and_Goggles", "Spyglass", "X_Ray_Specs" ]
+	},
+	{
+		"included": "Bomber_Cap",
+		"excluded": [ "3D_Glasses", "Aviators", "Black_Night_Vision_Goggles", "Cardanos", "Coke_Bottle", "Eye_Patch", "Glass_Eye", "Laser", "Laser_Beams", "Monocle", "Sextant", "Snorkel_and_Goggles", "Spyglass", "X_Ray_Specs" ]
+	},
+	{
+		"included": "Bomber_Cap_Long",
+		"excluded": [ "3D_Glasses", "Aviators", "Black_Night_Vision_Goggles", "Cardanos", "Coke_Bottle", "Eye_Patch", "Glass_Eye", "Laser", "Laser_Beams", "Monocle", "Sextant", "Snorkel_and_Goggles", "Spyglass", "X_Ray_Specs" ]
+	},
+	{
+		"included": "Bomber_Cap_Black_Long_Dreads",
+		"excluded": [ "3D_Glasses", "Aviators", "Black_Night_Vision_Goggles", "Cardanos", "Coke_Bottle", "Eye_Patch", "Glass_Eye", "Laser", "Laser_Beams", "Monocle", "Sextant", "Snorkel_and_Goggles", "Spyglass", "X_Ray_Specs" ]
+	},
+	{
+		"included": "Vajra_Crown",
+		"excluded": [ "3D_Glasses", "Aviators", "Black_Night_Vision_Goggles", "Cardanos", "Coke_Bottle", "Eye_Patch", "Glass_Eye", "Laser", "Laser_Beams", "Monocle", "Sextant", "Snorkel_and_Goggles", "Spyglass", "X_Ray_Specs" ]
+	},
+	{
+		"included": "Woodland_Fae",
+		"excluded": [ "3D_Glasses", "Aviators", "Black_Night_Vision_Goggles", "Cardanos", "Coke_Bottle", "Eye_Patch", "Glass_Eye", "Laser", "Laser_Beams", "Monocle", "Sextant", "Snorkel_and_Goggles", "Spyglass", "X_Ray_Specs" ]
+	},
+	{
+		"included": "Woodland_Fae_Minoan",
+		"excluded": [ "3D_Glasses", "Aviators", "Black_Night_Vision_Goggles", "Cardanos", "Coke_Bottle", "Eye_Patch", "Glass_Eye", "Laser", "Laser_Beams", "Monocle", "Sextant", "Snorkel_and_Goggles", "Spyglass", "X_Ray_Specs" ]
+	},
+	{
+		"included": "Fez",
+		"excluded": [ "3D_Glasses", "Aviators", "Black_Night_Vision_Goggles", "Cardanos", "Coke_Bottle", "Eye_Patch", "Glass_Eye", "Laser", "Laser_Beams", "Monocle", "Sextant", "Snorkel_and_Goggles", "Spyglass", "X_Ray_Specs" ]
+	},
+	{
+		"included": "Diving_Bell",
+		"excluded":  [ "Dali", "Fu_Manchu", "Goatee", "Jaw_Beard", "Lumberjack", "Mr_Selleck", "Mutton_Chops", "Pirate", "Strongman", "The_Creep", "The_Wizard" ]
+	},
+	{
+		"included": "Glass_Eye",
+		"excluded":  [ "Angry", "Bored", "Squinting" ]
+	},
+	{
+		"included": "Snorkel_and_Goggles",
+		"excluded":  [ "Atomic_Pipe", "Cigarette", "Doobie", "Dynamite", "Forked_Tongue", "Mouse_Prey", "Paintbrush", "Pipe", "Pipe_Tornado", "Snorkel", "Diving_Bell" ]
+	},
+	{
+		"included": "Spyglass",
+		"excluded":  [ "Atomic_Pipe", "Cigarette", "Doobie", "Dynamite", "Forked_Tongue", "Mouse_Prey", "Paintbrush", "Pipe", "Pipe_Tornado", "Snorkel", "Diving_Bell" ]
+	},
+	{
+		"included": "Sextant",
+		"excluded":  [ "Atomic_Pipe", "Cigarette", "Doobie", "Dynamite", "Forked_Tongue", "Mouse_Prey", "Paintbrush", "Pipe", "Pipe_Tornado", "Snorkel", "Diving_Bell" ]
+	},
+	{
+		"included": "Laser_Beams",
+		"excluded":  [ "Atomic_Pipe", "Cigarette", "Doobie", "Dynamite", "Forked_Tongue", "Mouse_Prey", "Paintbrush", "Pipe", "Pipe_Tornado", "Snorkel", "Diving_Bell", "Bored", "Gazing", "Squinting" ]
+	},
+	{
+		"included": "Black_Night_Vision_Goggles",
+		"excluded":  [ "Atomic_Pipe", "Cigarette", "Doobie", "Dynamite", "Forked_Tongue", "Mouse_Prey", "Paintbrush", "Pipe", "Pipe_Tornado", "Snorkel", "Diving_Bell", "Arrow", "Bicorn", "Bomber_Cap", "Bomber_Cap_Long", "Bomber_Cap_Black_Long_Dreads", "Captain", "Captain_Cornrows", "Captain_Minoan", "Cobra_Crown", "Cowboy_Hat", "Cowboy_Hat_Black_Long_Dreads", "Derby", "Derby_Black_Long_Dreads", "Derby_Long",
+			"Diving_Bell", "Fez", "Fez_Long", "First_Mate", "Halo", "Headband", "Headband_Long", "Hopi_Headdress", "Jester", "Jeweled_Crown", "Jeweled_Diadem", "Miss_Antoinette", "Mouse_Prey", "Nurse", "Paintbrush", "Raspberry_Beret", "Rastafari", "Rastafari_Brown_Long_Dreads", "Saiyan", 
+			"Ship_Master", "Skull_Cap", "Steam_Phunk", "Steam_Phunk_Black_Long_Dreads", "Steam_Phunk_Brown_Long_Dreads", "Technicolor_Horn", "The_Goat", "Top_Hat", "Top_Hat_Long", "Top_Hat_Long_Black_Dreads", "Tricorn", "Vajra_Crown", "Visko_Helmet", 
+			"Visko_Helmet_Long", "Visko_Helmet_Pink", "Witch_Hat", "Witch_Hat_Black_Long_Dreads", "Wizard_Cap", "Wizard_Cap_Minoan", "Woodland_Fae", "Woodland_Fae_Minoan", "Woodland_Fae_Black_Long_Dreads", "Dynamite", "Snorkel"  ]
+	},
+	{
+		"included": "Snorkel_and_Goggles",
+		"excluded":  [ "Arrow", "Bicorn", "Bomber_Cap", "Bomber_Cap_Long", "Bomber_Cap_Black_Long_Dreads", "Captain", "Captain_Cornrows", "Captain_Minoan", "Cobra_Crown", "Cowboy_Hat", "Cowboy_Hat_Black_Long_Dreads", "Derby", "Derby_Black_Long_Dreads", "Derby_Long",
+			"Diving_Bell", "Fez", "Fez_Long", "First_Mate", "Halo", "Headband", "Headband_Long", "Hopi_Headdress", "Jester", "Jeweled_Crown", "Jeweled_Diadem", "Miss_Antoinette", "Mouse_Prey", "Nurse", "Paintbrush", "Raspberry_Beret", "Rastafari", "Rastafari_Brown_Long_Dreads", "Saiyan", 
+			"Ship_Master", "Skull_Cap", "Steam_Phunk", "Steam_Phunk_Black_Long_Dreads", "Steam_Phunk_Brown_Long_Dreads", "Technicolor_Horn", "The_Goat", "Top_Hat", "Top_Hat_Long", "Top_Hat_Long_Black_Dreads", "Tricorn", "Vajra_Crown", "Visko_Helmet", 
+			"Visko_Helmet_Long", "Visko_Helmet_Pink", "Witch_Hat", "Witch_Hat_Black_Long_Dreads", "Wizard_Cap", "Wizard_Cap_Minoan", "Woodland_Fae", "Woodland_Fae_Minoan", "Woodland_Fae_Black_Long_Dreads", "Dynamite", "Snorkel" ]
+	},
+	{
+		"included": "X_Ray_Specs",
+		"excluded":  [ "Angry", "Bored", "Squinting" ]
+	},
+	{
+		"included": "Cigarette",
+		"excluded":  [ "Pursed", "Relaxed", "Scowl", "Smile", "Smirk" ]
+	},
+	{
+		"included": "Dynamite",
+		"excluded":  [ "Grimace", "Relaxed", "Scowl", "Smile", "Smirk", "Snorkel_and_Goggles" ]
+	},
+	{
+		"included": "Paintbrush",
+		"excluded":  [ "Grimace", "Pursed", "Relaxed", "Scowl", "Smile", "3D_Glasses", "Aviators", "Black_Night_Vision_Goggles", "Cardanos", "Coke_Bottle", "Eye_Patch", "Glass_Eye", "Laser", "Laser_Beams", "Monocle", "Sextant", "Snorkel_and_Goggles", "Spyglass", "X_Ray_Specs" ]
+	},
+	{
+		"included": "Mouse_Prey",
+		"excluded":  [ "Grimace", "Pursed", "Relaxed", "Scowl", "Smile" ]
+	},
+	{
+		"included": "Forked_Tongue",
+		"excluded":  [ "Grimace", "Pursed", "Relaxed", "Scowl", "Smile" ]
+	},
+	{
+		"included": "Doobie",
+		"excluded":  [ "Grimace", "Pursed", "Relaxed", "Scowl", "Smile" ]
+	},
+	{
+		"included": "Snorkel",
+		"excluded":  [ 
+			"Grimace", "Relaxed", "Scowl", "Smile", "Smirk", "3D_Glasses", "Aviators", "Black_Night_Vision_Goggles", "Cardanos", "Coke_Bottle", "Eye_Patch", "Glass_Eye", "Laser", "Laser_Beams", "Monocle", "Sextant", "Snorkel_and_Goggles", "Spyglass", "X_Ray_Specs"
+		]
+	},
+	{
+		"included": "Atomic_Pipe",
+		"excluded":  [ "Grimace", "Relaxed", "Scowl", "Smile", "Smirk", "3D_Glasses", "Aviators", "Black_Night_Vision_Goggles", "Cardanos", "Coke_Bottle", "Eye_Patch", "Glass_Eye", "Laser", "Laser_Beams", "Monocle", "Sextant", "Snorkel_and_Goggles", "Spyglass", "X_Ray_Specs" ]
+	},
+	{
+		"included": "Pipe_Tornado",
+		"excluded":  [ "Grimace", "Relaxed", "Scowl", "Smile", "Smirk", "3D_Glasses", "Aviators", "Black_Night_Vision_Goggles", "Cardanos", "Coke_Bottle", "Eye_Patch", "Glass_Eye", "Laser", "Laser_Beams", "Monocle", "Sextant", "Snorkel_and_Goggles", "Spyglass", "X_Ray_Specs" ]
+	},
+	{
+		"included": "Pipe",
+		"excluded":  [ "Grimace", "Relaxed", "Scowl", "Smile", "Smirk" ]
+	},
+	{
+		"included": "Dynamite",
+		"excluded":  [ "Grimace", "Relaxed", "Scowl", "Smile", "Smirk" ]
+	}
+]
+

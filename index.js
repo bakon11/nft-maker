@@ -82,6 +82,7 @@ const checkRarity = async ( attributeWeight, totalWeight ) => {
 	if( attributeWeight === "png" ) attributeWeight = 1;
 	let random = Math.floor(Math.random() * totalWeight);
 	random -= attributeWeight;
+	// console.log("random", random);
 	return(random < 0);
 };
 
@@ -117,6 +118,7 @@ const run = async () => {
 	let finished = config.start;
 	console.log("finished", +finished);
 	await checkForBuildDir(config);
+	let selecting = 0;
 	while( +finished < +amount ){
 		let exculded;
 		let checkDuplicateRes;
@@ -129,6 +131,10 @@ const run = async () => {
 		if( checkDuplicateRes === false && exculded === false ) console.log("created: " + config.series + " | " + finished + " of: " + amount);
 		if( checkDuplicateRes === false && exculded === false ) finished++;
 		if( checkDuplicateRes === false && exculded === false ) console.log("\n###############################################################\n");
+		if( exculded === true ) selecting++
+		if( exculded === false ) selecting = 0;
+		console.log("selecting", selecting);
+
 	};
 	return;
 };

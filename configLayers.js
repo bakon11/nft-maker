@@ -4,12 +4,12 @@ export const getConfigLayersHumans = async () => {
 	const network = "dot";
   const root_folder = "./layers/";
 	const collection = "cryptonauts/";
-	const series = "Human_Black_Man/";
-  const name = "HumanMan";
+	const series = "Human_Brown_Woman/";
+  const name = "HumanWoman";
   const description = "Humans Shift.";
   const uri = "ipfs";
 	const start = 0;
-	const amount = 1300;
+	const amount = 1000;
   let metadata = {};
 
   if( network === "dot" || network === "eth" ){
