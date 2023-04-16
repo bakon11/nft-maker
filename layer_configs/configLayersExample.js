@@ -2,7 +2,7 @@ export const configLayersExample = async () => {
   const network = "dot";
   const root_folder = "./layers/";
   const collection = "example/";
-  const series = "example_Clan/";
+  const series = "example/";
   const name = "Example";
   const description = "Some Description here.";
   const uri = "ipfs";
@@ -33,16 +33,15 @@ export const configLayersExample = async () => {
             "image": "<uri | array>",
             "mediaType": "image/<mime_sub_type>",
 
-            "description": <string | array>,
+            "description": "<string | array>",
 
             "files": [{
               "name": "<string>",
               "mediaType": "<mime_type>",
               "src": "<uri | array>",
-              "<other_properties>"
             }],
 
-            "<other properties>"
+            "attributes": []
           }
         },
         "version": 2
@@ -83,6 +82,7 @@ export const configLayersExample = async () => {
     root_folder,
     collection,
     series,
+    conditionals_file,
     start,
     amount,
     metadata,

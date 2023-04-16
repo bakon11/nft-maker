@@ -2,10 +2,11 @@ import fs  from "fs";
 import { createHash } from 'node:crypto'
 import sharp from "sharp";
 // Below is an example of importing a layers config js file
-import { configLayersHuman_Man } from "./layer_configs/configLayersHuman_Man.js";
+// import { configLayersHuman_Man } from "./layer_configs/configLayersHuman_Man.js";
+import { configLayersExample } from  "./layer_configs/configLayersExample.js";
 import { conditionals_sorter } from "./conditionals_sorter.js";
 
-const config = await configLayersHuman_Man();
+const config = await configLayersExample();
 
 const generateLayers = async ( config ) => {
 	// console.log("Selecting Layers")
