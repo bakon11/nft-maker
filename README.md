@@ -1,14 +1,31 @@
 # bakon-maker
 Maker of logical NFTz
 
-More instructions coming very soon. 
-
-This is a VERY early stage of this NFT maker. It will allow you to create filter functions and somewhat configurable layers.
+This NFT Maker allows you to configure your layer folders with a few options like display name and order.
+Asign weights to layers to make them more or less rare.
+And setup conditionals through easy JSON config file. Input the layer your looking for and what it can't be paired with.
 It uses the Sharp Image procesing library(https://sharp.pixelplumbing.com/api-constructor)
 <hr />
 
-**What are filter functions?**<br />
-If you have layers that don't match with each other in a single collection.<br />
-Insted of running a NFT generator over and over with different file structures etc etc.<br />
-Now you can build a function, that will check if specified layer/attribute has ben selected and what it can or can't be used with.<br />
+**Files and Folder Structure**<br />
+*conditionals/* ~ This dir holds the json file that specifies which layers can't go with each other. Under include type in what layer to look for when selected and under excludes is an array of layers it is not compatible with.
+
+*layer_configs/* ~ This folder holds configs js files the define how your layers are used and their order, display name, which conditionals file to use if any, metadata, NFT colleciton information etc etc.
+
+*layers/* ~ this folder holds all your layer files, you specify how they're used in the layer config js files mentioned above.
+
+*index.js* ~ currently you still need to import your config JS file manually which is defined in this file.
+
 <hr />
+
+**How to Use**
+Currently only PNGs are supported, however this will expand rather quickly, PNG's are just easy to work with during development.
+Use NODEJS 18 LTS
+
+1) npm install.
+1) Put your folders with your layer images in the `layers/` directory(any order).
+2) In the layers config folder, using the configLayersExample.js file set yours up, there is comments in the file to help you along.
+3) in the index.js file you need to import your config layers js file, just follow the example on line 4.
+4) On the line where you see `const config = ` replace the name with the config files name you just imported in step 3.
+5) In terminal you should now be ready to run: `node index.js`.
+
