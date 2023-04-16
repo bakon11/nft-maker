@@ -1,38 +1,49 @@
 import fs  from "fs";
 
-export const checkConditionalsHumans = async ( selectedLayers ) => {
+export const checkConditionals = async ( selectedLayers ) => {
 	let check = false;
 	let run = true;
 	if(run === false) return(false);
-	if ( 
-		await selectedLayers.checkLayers.includes("Demon_Cloak_Collar") === true
-	){
-		let checkCloak = await selectedLayers.checkLayers.includes("Demon_Cloak");
-		if(checkCloak === false) return(true);
-	};
-	check = await checkConditionalsFile(selectedLayers);
+	check = await Promise.resolve(checkConditionalsFile(selectedLayers));
 	return(check);
 };
 
 const checkConditionalsFile = async ( selectedLayers ) => {
 	let check = true;
-	const conditionalsRes = fs.readFileSync("./conditionals.json");
+	let search;
+	let found = [];
+	const conditionalsRes = fs.readFileSync("./conditionalsHuman.json");
 	const conditionals = await JSON.parse(conditionalsRes);
+	const layers = selectedLayers.checkLayers;
 	await Promise.all(
-		await conditionals.map( async ( condition ) => {
-			let checkLayersRes = await selectedLayers.checkLayers.includes(condition.included);
-			if ( checkLayersRes  === true ) check = await checkTheStuff(selectedLayers, condition.excluded );
-			if ( checkLayersRes  === true ) return(check);
+		await layers.map( async ( layer ) => {
+			search = await conditionals.find(({ included }) => included === layer )
+			// if(search !== undefined)console.log("search", search.included );
+			// if(search !== undefined)console.log("layers", selectedLayers.checkLayers );
+			if(search !== undefined)found.push(search);
+		})
+	)
+	// console.log("total found", found);
+	// make a function that takes layers and makes sujre nothing in exluded arrays belongs to it.
+	check = await searchExcluded( layers, found );
+	// console.log("check",check);
+	return(check);
+};
+
+const searchExcluded = async (selectedLayers, found ) => {
+	let check = false;
+	// console.log("layers", selectedLayers);
+	// console.log("found", found)
+	await Promise.all(
+		await found.map( async ( item ) => {
+			// console.log("found map", item.excluded);
+			// console.log("cuased the exlusion", selectedLayers.includes)
+			await selectedLayers.map(( layer ) => {
+				let excluded  = item.excluded.includes(layer);
+				if( excluded === true ) check = true;
+				// console.log("selected layer", item.excluded.includes(layer));
+			})
 		})
 	);
 	return(check);
 };
-
-const checkTheStuff = async ( selectedLayers, excluded ) => {
-	let check = false;
-	await Promise.all( await selectedLayers.checkLayers.map( async ( layer ) => {
-		if( await excluded.includes(layer) === true ) check = true;
-		if( await excluded.includes(layer) === true ) return(check);
-	}));
-	return(check);
-}; 

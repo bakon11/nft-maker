@@ -1,8 +1,8 @@
 import fs  from "fs";
 import { createHash } from 'node:crypto'
 import sharp from "sharp";
-import { getConfigLayersHumans } from "./configLayers.js";
-import { checkConditionalsHumans } from "./conditionals.js";
+import { getConfigLayersHuman_Man, getConfigLayersWolf_Clan, getConfigLayersMole_Clan } from "./configLayers.js";
+import { checkConditionals } from "./conditionals.js";
 
 const generateLayers = async ( config ) => {
 	// console.log("Selecting Layers")
@@ -22,7 +22,7 @@ const generateLayers = async ( config ) => {
 		randomLayer = layerFolder[Math.floor(Math.random() * layerFolder.length)];
 		chosenLayer = randomLayer.split(/[#.]+/)[0];
 		layerWeight = randomLayer.split(/[#.]+/)[1];
-		totalWeight = config.layers[layer].totalWeight;
+		totalWeight = layerFolder.length;
 		rarity = await checkRarity(layerWeight, totalWeight);
 		if( rarity === true ) await checkLayers.push(chosenLayer);
 		if( rarity === true ) await attributes.push({ "trait_type": config.layers[layer].options.displayName, "value": chosenLayer });
@@ -112,29 +112,28 @@ const generateMetadata = async ( layers, finished ) => {
 };
 
 const run = async () => {
-	const config = await getConfigLayersHumans();
+	const config = await getConfigLayersHuman_Man();
 	let amount = config.amount + config.start;
 	console.log("amount", +amount);
 	let finished = config.start;
 	console.log("finished", +finished);
 	await checkForBuildDir(config);
-	let selecting = 0;
+	let tries = 0;
 	while( +finished < +amount ){
 		let exculded;
 		let checkDuplicateRes;
 		const selectedLayers = await generateLayers(config);
-		exculded = await checkConditionalsHumans(selectedLayers);
+		exculded = await checkConditionals(selectedLayers);
 		if( checkDuplicateRes === false && exculded === false ) console.log("\n###############################################################\n");
 		if( exculded === false ) checkDuplicateRes = await checkDuplicate(selectedLayers);
 		if( checkDuplicateRes === false && exculded === false ) await combineLayers(selectedLayers, finished);
 		if( checkDuplicateRes === false && exculded === false ) await generateMetadata(selectedLayers, finished);
 		if( checkDuplicateRes === false && exculded === false ) console.log("created: " + config.series + " | " + finished + " of: " + amount);
+		if( checkDuplicateRes === false && exculded === false )	console.log("tries", tries);
 		if( checkDuplicateRes === false && exculded === false ) finished++;
 		if( checkDuplicateRes === false && exculded === false ) console.log("\n###############################################################\n");
-		if( exculded === true ) selecting++
-		if( exculded === false ) selecting = 0;
-		console.log("selecting", selecting);
-
+		if( exculded === true ) tries++
+		if( exculded === false ) tries = 0;
 	};
 	return;
 };
