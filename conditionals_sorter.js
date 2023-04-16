@@ -1,18 +1,17 @@
 import fs  from "fs";
 
-export const checkConditionals = async ( selectedLayers ) => {
+export const conditionals_sorter = async ( selectedLayers, conditionalsFile ) => {
 	let check = false;
-	let run = true;
-	if(run === false) return(false);
-	check = await Promise.resolve(checkConditionalsFile(selectedLayers));
+	if(conditionalsFile==="") return(false);
+	check = await Promise.resolve(checkConditionalsFile(selectedLayers, conditionalsFile));
 	return(check);
 };
 
-const checkConditionalsFile = async ( selectedLayers ) => {
-	let check = true;
+const checkConditionalsFile = async ( selectedLayers, conditionalsFile ) => {
+	let check = false;
 	let search;
 	let found = [];
-	const conditionalsRes = fs.readFileSync("./conditionalsHuman.json");
+	const conditionalsRes = fs.readFileSync(`./conditionals/${conditionalsFile}`);
 	const conditionals = await JSON.parse(conditionalsRes);
 	const layers = selectedLayers.checkLayers;
 	await Promise.all(

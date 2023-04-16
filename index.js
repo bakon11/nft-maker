@@ -1,8 +1,8 @@
 import fs  from "fs";
 import { createHash } from 'node:crypto'
 import sharp from "sharp";
-import { getConfigLayersHuman_Man, getConfigLayersWolf_Clan, getConfigLayersMole_Clan } from "./configLayers.js";
-import { checkConditionals } from "./conditionals.js";
+import { configLayersHuman_Man } from "./layer_configs/configLayersHuman_Man.js";
+import { conditionals_sorter } from "./conditionals_sorter.js";
 
 const generateLayers = async ( config ) => {
 	// console.log("Selecting Layers")
@@ -112,26 +112,30 @@ const generateMetadata = async ( layers, finished ) => {
 };
 
 const run = async () => {
-	const config = await getConfigLayersHuman_Man();
+	const config = await configLayersHuman_Man();
+	console.log("config", config.conditionals_file);
 	let amount = config.amount + config.start;
 	console.log("amount", +amount);
 	let finished = config.start;
 	console.log("finished", +finished);
 	await checkForBuildDir(config);
 	let tries = 0;
+	let mostTries = 0;
 	while( +finished < +amount ){
 		let exculded;
 		let checkDuplicateRes;
 		const selectedLayers = await generateLayers(config);
-		exculded = await checkConditionals(selectedLayers);
+		exculded = await conditionals_sorter(selectedLayers , config.conditionals_file);
 		if( checkDuplicateRes === false && exculded === false ) console.log("\n###############################################################\n");
 		if( exculded === false ) checkDuplicateRes = await checkDuplicate(selectedLayers);
 		if( checkDuplicateRes === false && exculded === false ) await combineLayers(selectedLayers, finished);
 		if( checkDuplicateRes === false && exculded === false ) await generateMetadata(selectedLayers, finished);
 		if( checkDuplicateRes === false && exculded === false ) console.log("created: " + config.series + " | " + finished + " of: " + amount);
 		if( checkDuplicateRes === false && exculded === false )	console.log("tries", tries);
+		if( checkDuplicateRes === false && exculded === false )	console.log("most tries", mostTries);
 		if( checkDuplicateRes === false && exculded === false ) finished++;
 		if( checkDuplicateRes === false && exculded === false ) console.log("\n###############################################################\n");
+		if( tries > mostTries ) mostTries = tries;
 		if( exculded === true ) tries++
 		if( exculded === false ) tries = 0;
 	};

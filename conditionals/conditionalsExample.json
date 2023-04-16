@@ -1,0 +1,8 @@
+[
+	{
+		"included": "example",
+		"excluded": [ 
+			"example"
+		]
+	},
+]

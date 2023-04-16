@@ -1,7 +1,7 @@
 {
   "name": "bakon-maker",
   "version": "1.0.0",
-  "description": "Generate logical NFTs",
+  "description": "Generate logical NFTs with easy to setup conditionals and layer configs.",
   "main": "index.js",
   "type": "module",
   "scripts": {

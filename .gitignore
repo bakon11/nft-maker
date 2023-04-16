@@ -1,3 +1,9 @@
 *node_modules/*
 *build/*
-*layers/*
+layers/*
+conditionals/*
+layer_configs/*
+
+!layer_configs/configLayersExample.js
+!conditionals/conditionalsExample.json
+!layers/example/
