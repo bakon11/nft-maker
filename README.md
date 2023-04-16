@@ -27,5 +27,6 @@ Use NODEJS 18 LTS
 2) In the layers config folder, using the configLayersExample.js file set yours up, there is comments in the file to help you along.
 3) in the index.js file you need to import your config layers js file, just follow the example on line 4.
 4) On the line where you see `const config = ` replace the name with the config files name you just imported in step 3.
-5) In terminal you should now be ready to run: `node index.js`.
+5) TO set weights/rarity on your layers take the file name and add the `#40` so for example `pink1#40.png`, the higher the number the more rare it will be.
+6) In terminal you should now be ready to run: `node index.js`.
 

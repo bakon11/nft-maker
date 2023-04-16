@@ -52,98 +52,31 @@ export const configLayersExample = async () => {
 
   const layers = [
       { 
-        path: "00_Background",
-       
+        path: "eyes",
         options: {
-          displayName: "Background",
+          displayName: "Eyes",
         }
       },
       { 
-        path: "01_Behind_Body_HIDDEN",
-       
+        path: "face",
         options: {
-          displayName: "Shadow_Cloak",
+          displayName: "Face",
         }
       },
       { 
-        path: "02_Nautical_Background", 
+        path: "head", 
        
         options: {
-          displayName: "Nautical_Background"
-        }
-      },
-      { 
-        path: "03_Character",
-       
-        options: {
-          displayName: "Character"
-        } 
-      },
-      { 
-        path: "04_Clothes",
-
-        options: {
-          displayName: "Clothes"
-        } 
-      },
-      { 
-        path: "05_Necklace",
-        options: {
-          displayName: "Necklace"
-        } 
-      },
-      { 
-        path: "06_Head_HIDDEN",
-        options: {
-          displayName: "Species_Head"
-        }
-      },
-      { 
-        path: "07_Mouth",
-        options: {
-          displayName: "Mouth"
-        } 
-       },
-      { 
-        path: "08_Eyes",
-
-        options: {
-          displayName: "Eyes"
-        } 
-       },
-      { 
-        path: "09_Head_HAIR_AND_HATS",
- 
-        options:{
           displayName: "Head"
         }
       },
       { 
-        path: "10_Facial_Hair",
-
+        path: "pinky",
+       
         options: {
-          displayName: "Facial_Hair"
+          displayName: "Pinky"
         } 
       },
-      { 
-        path: "11_Glasses",
-
-        options: {
-          displayName: "Glasses"
-        } 
-      },
-      { 
-        path: "12_Accessory",
-        options: {
-          displayName: "Accessory"
-        } 
-      },
-      { 
-        path: "13_Nautical_Foreground",
-        options: {
-          displayName: "Nautical_Foreground"
-        } 
-      }
     ];
 
   return({

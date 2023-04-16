@@ -1,8 +1,11 @@
 import fs  from "fs";
 import { createHash } from 'node:crypto'
 import sharp from "sharp";
+// Below is an example of importing a layers config js file
 import { configLayersHuman_Man } from "./layer_configs/configLayersHuman_Man.js";
 import { conditionals_sorter } from "./conditionals_sorter.js";
+
+const config = await configLayersHuman_Man();
 
 const generateLayers = async ( config ) => {
 	// console.log("Selecting Layers")
@@ -112,7 +115,6 @@ const generateMetadata = async ( layers, finished ) => {
 };
 
 const run = async () => {
-	const config = await configLayersHuman_Man();
 	console.log("config", config.conditionals_file);
 	let amount = config.amount + config.start;
 	console.log("amount", +amount);
