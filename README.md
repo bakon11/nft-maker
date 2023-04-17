@@ -4,7 +4,7 @@ Maker of logical NFTz
 This NFT Maker allows you to configure your layer folders with a few options like display name and order.
 Asign weights to layers to make them more or less rare.
 And setup conditionals through easy JSON config file. Input the layer your looking for and what it can't be paired with.
-<br />
+<br /><br />
 **Why anohter NFT Generator**<br />
 Because I wasn't able to find a NFT generator, where I can easily define what layers can not be included with each other. Usually it was/is a cumbersome process
 of switching out folders every so many itterations or proprietary code to the given drop. Bakon maker allows you to define those condtionals in a simple to follow,
@@ -22,7 +22,7 @@ JSON file, and then simple config file and let it rip.
 
 <hr />
 
-**How to Use**
+**How to Use**<br />
 Currently only PNGs are supported, however this will expand rather quickly, PNG's are just easy to work with during development.
 It uses the Sharp Image procesing library(https://sharp.pixelplumbing.com/api-constructor)
 Use NODEJS 18 LTS
