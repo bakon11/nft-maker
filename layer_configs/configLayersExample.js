@@ -64,14 +64,12 @@ export const configLayersExample = async () => {
       },
       { 
         path: "head", 
-       
         options: {
           displayName: "Head"
         }
       },
       { 
         path: "pinky",
-       
         options: {
           displayName: "Pinky"
         } 

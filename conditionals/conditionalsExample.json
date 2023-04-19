@@ -1,8 +1,8 @@
 [
 	{
-		"included": "example",
+		"included": "eyes1",
 		"excluded": [ 
-			"example"
+			"face2, head4"
 		]
 	}
 ]

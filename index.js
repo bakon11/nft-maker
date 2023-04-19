@@ -48,24 +48,27 @@ const combineLayers = async ( layers, finished ) => {
 };
 
 const checkForBuildDir = async ( config ) => {
+	if (!fs.existsSync("./build/"){
+    	fs.mkdirSync("./build/");
+	};
 	if (!fs.existsSync("./build/"+config.collection)){
-    fs.mkdirSync("./build/"+config.collection);
+    	fs.mkdirSync("./build/"+config.collection);
 	};
 	if (!fs.existsSync("./build/"+config.collection+config.series)){
-    fs.mkdirSync("./build/"+config.collection+config.series);
+    	fs.mkdirSync("./build/"+config.collection+config.series);
 	};
 	if (!fs.existsSync("./build/"+config.collection+config.series+"images/")){
-    fs.mkdirSync("./build/"+config.collection+config.series+"images/");
+    	fs.mkdirSync("./build/"+config.collection+config.series+"images/");
 	};
 	if (!fs.existsSync("./build/"+config.collection+config.series+"json/")){
-    fs.mkdirSync("./build/"+config.collection+config.series+"json/");
+    	fs.mkdirSync("./build/"+config.collection+config.series+"json/");
 	};
 	if (!fs.existsSync("./build/"+config.collection+config.series+"generated/")){
-    fs.mkdirSync("./build/"+config.collection+config.series+"generated/");
+    	fs.mkdirSync("./build/"+config.collection+config.series+"generated/");
 	};
 	if (!fs.existsSync("./build/"+config.collection+config.series+"generated/generated.json")){
     const generated = [];
-    fs.writeFileSync("./build/"+config.collection+config.series+"generated/generated.json", JSON.stringify(generated));
+    	fs.writeFileSync("./build/"+config.collection+config.series+"generated/generated.json", JSON.stringify(generated));
 	};	
 
 };
