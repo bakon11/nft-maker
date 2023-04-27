@@ -46,9 +46,6 @@ const generateLayers = async ( config ) => {
 		randomLayer = layerFolder[Math.floor(Math.random() * layerFolder.length)];
 		chosenLayer = randomLayer.split(/[#.]+/)[0];
 		layerWeight = randomLayer.split(/[#.]+/)[1];
-		// totalWeight = await countTotalWeights(layerFolder);
-		// totalWeight = layerFolder.length;
-		// console.log("totalWeight", totalWeight);
 		rarity = await checkRarity(layerWeight);
 		if( rarity === true ) await checkLayers.push(chosenLayer);
 		if( rarity === true ) await attributes.push({ "trait_type": config.layers[layer].options.displayName, "value": chosenLayer });
