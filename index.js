@@ -1,12 +1,32 @@
 import fs  from "fs";
 import { createHash } from 'node:crypto'
 import sharp from "sharp";
-// Below is an example of importing a layers config js file
-// import { configLayersHuman_Man } from "./layer_configs/configLayersHuman_Man.js";
-import { configLayersExample } from  "./layer_configs/configLayersExample.js";
 import { conditionals_sorter } from "./conditionals_sorter.js";
+// Below is an example of importing a layers config js file
+import { Bear_Clan } from "./layer_configs/Bear_Clan.js";
+import { Butterfly_Clan } from "./layer_configs/Butterfly_Clan.js";
+import { Dolphin_Clan } from "./layer_configs/Dolphin_Clan.js";
+import { Eagle_Clan } from "./layer_configs/Eagle_Clan.js";
+import { Lion_Clan } from "./layer_configs/Lion_Clan.js";
+import { Mole_Clan } from "./layer_configs/Mole_Clan.js";
+import { Raven_Clan } from "./layer_configs/Raven_Clan.js";
+import { Snake_Clan } from "./layer_configs/Snake_Clan.js";
+import { Spider_Clan } from "./layer_configs/Spider_Clan.js";
+import { Turtle_Clan } from "./layer_configs/Turtle_Clan.js";
+import { Windhorse_Clan } from "./layer_configs/Windhorse_Clan.js";
+import { Wolf_Clan } from "./layer_configs/Wolf_Clan.js";
+import { Human_Man } from "./layer_configs/Human_Man.js";
+import { Human_Woman } from "./layer_configs/Human_Woman.js";
+import { Air_Shadow_Walker } from "./layer_configs/Air_Shadow_Walker.js";
+import { Earth_Shadow_Walker } from "./layer_configs/Earth_Shadow_Walker.js";
+import { Fire_Shadow_Walker } from "./layer_configs/Fire_Shadow_Walker.js";
+import { Water_Shadow_Walker } from "./layer_configs/Water_Shadow_Walker.js";
+import { Skydancer } from "./layer_configs/Skydancer.js"
+import { configLayersExample } from  "./layer_configs/configLayersExample.js";
+import { MIB } from "./layer_configs/MIB.js";
+import { Empyrean } from "./layer_configs/Empyrean.js";
 
-const config = await configLayersExample();
+const config = await Human_Man();
 
 const generateLayers = async ( config ) => {
 	// console.log("Selecting Layers")
@@ -26,8 +46,10 @@ const generateLayers = async ( config ) => {
 		randomLayer = layerFolder[Math.floor(Math.random() * layerFolder.length)];
 		chosenLayer = randomLayer.split(/[#.]+/)[0];
 		layerWeight = randomLayer.split(/[#.]+/)[1];
-		totalWeight = layerFolder.length;
-		rarity = await checkRarity(layerWeight, totalWeight);
+		// totalWeight = await countTotalWeights(layerFolder);
+		// totalWeight = layerFolder.length;
+		// console.log("totalWeight", totalWeight);
+		rarity = await checkRarity(layerWeight);
 		if( rarity === true ) await checkLayers.push(chosenLayer);
 		if( rarity === true ) await attributes.push({ "trait_type": config.layers[layer].options.displayName, "value": chosenLayer });
 		if( rarity === true ) await combineLayers.push(config.root_folder+config.collection+config.series+config.layers[layer].path+"/"+randomLayer);
@@ -39,6 +61,33 @@ const generateLayers = async ( config ) => {
 		checkLayers,
 		combineLayers
 	});
+};
+
+/*
+const countTotalWeights = async ( layerFolder ) => {
+	let totalWeight = 0;
+	await Promise.all(
+		await layerFolder.map(( layer ) => {
+			let weight = layer.split(/[#.]+/)[1];
+			if(layer.split(/[#.]+/)[1] === "png") weight = 1;
+			totalWeight += +weight;
+		})
+	);
+	return(totalWeight);
+};
+const checkRarity = async ( attributeWeight, totalWeight ) => {
+	if( attributeWeight === "png" ) attributeWeight = 1;
+	// let random = Math.floor(Math.random() * totalWeight);
+	let random = Math.floor(Math.random() * 100);	
+	random -= attributeWeight;
+	// console.log("random", random);
+	return(random < 0);
+};
+*/
+
+const checkRarity = async ( attributeWeight ) => { 
+	let random = Math.floor(Math.random() * 100);
+	return(attributeWeight < random);
 };
 
 const combineLayers = async ( layers, finished ) => {
@@ -67,7 +116,6 @@ const checkForBuildDir = async ( config ) => {
     const generated = [];
     fs.writeFileSync("./build/"+config.collection+config.series+"generated/generated.json", JSON.stringify(generated));
 	};	
-
 };
 
 const checkDuplicate = async ( selectedLayers ) => {
@@ -80,14 +128,6 @@ const checkDuplicate = async ( selectedLayers ) => {
 	if( exists === false ) fs.writeFileSync("./build/"+selectedLayers.collection+selectedLayers.series+"generated/generated.json", JSON.stringify(generated));
 	console.log("exists", exists);
 	return(exists);
-};
-
-const checkRarity = async ( attributeWeight, totalWeight ) => {
-	if( attributeWeight === "png" ) attributeWeight = 1;
-	let random = Math.floor(Math.random() * totalWeight);
-	random -= attributeWeight;
-	// console.log("random", random);
-	return(random < 0);
 };
 
 const generateMetadata = async ( layers, finished ) => {
@@ -106,8 +146,8 @@ const generateMetadata = async ( layers, finished ) => {
 	  "Gather_the_144K": "ipfs://QmdiDnZLV9VX4kuVU2RMhHLnJ5A6S9fqWVFB1db6uCttTZ",
 	  "CC-BY": "ipfs://QmR2WgquiPehwhP2JxC7snDABy2MEibCh1MxhQvEoSA8VB",
 	  "mandala-qr-code": "ipfs://QmbEsnmBxW455sXhHpqcahGshY8Fbeor3hMhLVJeApQDGp",
-	  "Regens-banner": "ipfs://QmbbgiihsvKffpboUUM9fnhaovFetozchNXWudcCAQq1iR",
-	  "Regens-chart": "ipfs://QmNdtjorxmVPuKBhpWy1DFABp831sZUgcfxav5WEeG8d6E",
+	  "Cryptonaut-banner": "ipfs://QmS5gYGAyMPucEFBbtxceD4BCfAx6PiU9YpvDvVtp6QibU",
+	  "Cryptonaut-chart": "ipfs://QmVGuoxbqdrSZKh2BobqZYfqYFqH76UHHQPKq7Y5oWApHm",
 	  "welcome-logo": "ipfs://QmVk9MaDEcoXWTnPubNHgUq9caFknL9X1UjgRt2t1AZeva"	  
 	}
 	console.log("newMetadata", newMetadata)

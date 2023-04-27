@@ -8,11 +8,10 @@ export const configLayersExample = async () => {
   const uri = "ipfs";
   const start = 0;
   const amount = 500;
-  const conditionals_file = "conditionalsExample.json";
+  const conditionals_file = `${series.slice(0,-1)}.json`;
   let metadata = {};
 
-  // ERC721 metadata DOT|Astar and ETH
-  if( network === "dot" || network === "eth" ){
+ if( network === "dot" || network === "eth" ){
     metadata = {
       "name": name,
       "description": description,
@@ -29,60 +28,119 @@ export const configLayersExample = async () => {
         "<policy_id>": {
           "<asset_name>": {
             "name": "<string>",
-
             "image": "<uri | array>",
             "mediaType": "image/<mime_sub_type>",
-
             "description": "<string | array>",
-
+            "attributes": [],
             "files": [{
               "name": "<string>",
               "mediaType": "<mime_type>",
               "src": "<uri | array>",
             }],
-
-            "attributes": []
           }
         },
         "version": 2
       }
     }
   };
-
   const layers = [
       { 
-        path: "eyes",
+        path: "00_Background",
         options: {
-          displayName: "Eyes",
+          displayName: "Background",
         }
       },
       { 
-        path: "face",
+        path: "01_Nautical_Background",
         options: {
-          displayName: "Face",
+          displayName: "Nautical_Background",
+        }
+      },      
+      { 
+        path: "02_Behind_Body_HIDDEN",       
+        options: {
+          displayName: "Shadow_Cloak",
         }
       },
       { 
-        path: "head", 
-       
+        path: "03_Character",       
         options: {
+          displayName: "Character"
+        } 
+      },
+      { 
+        path: "04_Clothes",
+        options: {
+          displayName: "Clothes"
+        } 
+      },
+      { 
+        path: "05_Necklace",
+        options: {
+          displayName: "Necklace"
+        } 
+      },
+      { 
+        path: "06_Head_HIDDEN",
+        options: {
+          displayName: "Species_Head"
+        }
+      },
+      { 
+        path: "07_Mouth",
+        options: {
+          displayName: "Mouth"
+        } 
+       },
+      { 
+        path: "08_Eyes",
+        options: {
+          displayName: "Eyes"
+        } 
+       },
+      { 
+        path: "09_Head_HAIR_AND_HATS", 
+        options:{
           displayName: "Head"
         }
       },
       { 
-        path: "pinky",
-       
+        path: "10_Facial_Hair",
         options: {
-          displayName: "Pinky"
+          displayName: "Facial_Hair"
         } 
       },
+      { 
+        path: "11_Glasses",
+        options: {
+          displayName: "Glasses"
+        } 
+      },
+      { 
+        path: "12_Accessory",
+        options: {
+          displayName: "Accessory"
+        } 
+      },
+      { 
+        path: "13_Nautical_Foreground",
+        options: {
+          displayName: "Nautical_Foreground"
+        } 
+      },
+      { 
+        path: "14_Tarot",
+        options: {
+          displayName: "Tarot"
+        } 
+      }
     ];
 
   return({
     root_folder,
+    conditionals_file,
     collection,
     series,
-    conditionals_file,
     start,
     amount,
     metadata,
