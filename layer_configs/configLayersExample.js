@@ -63,7 +63,11 @@ export const configLayersExample = async () => {
         }
       },
       { 
+<<<<<<< HEAD
         path: "03_Character",       
+=======
+        path: "head", 
+>>>>>>> a23f52951627eb848ad8e98b37237063fdb5d4f3
         options: {
           displayName: "Character"
         } 

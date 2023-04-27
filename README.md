@@ -37,5 +37,5 @@ Use NODEJS 18 LTS
 6) In terminal you should now be ready to run: `node index.js`.
 Please watch video for more details.
 
-
-
+**Video**
+https://youtu.be/WF3B1H5A0W8
