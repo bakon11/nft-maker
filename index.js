@@ -26,7 +26,7 @@ import { configLayersExample } from  "./layer_configs/configLayersExample.js";
 import { MIB } from "./layer_configs/MIB.js";
 import { Empyrean } from "./layer_configs/Empyrean.js";
 
-const config = await Human_Man();
+const config = await Human_Woman();
 
 const generateLayers = async ( config ) => {
 	// console.log("Selecting Layers")
@@ -43,6 +43,7 @@ const generateLayers = async ( config ) => {
 		let layerWeight;
 		let totalWeight;
 		layerFolder = fs.readdirSync(config.root_folder+config.collection+config.series+config.layers[layer].path);
+		// console.log("layerFolder", layerFolder)
 		randomLayer = layerFolder[Math.floor(Math.random() * layerFolder.length)];
 		chosenLayer = randomLayer.split(/[#.]+/)[0];
 		layerWeight = randomLayer.split(/[#.]+/)[1];
@@ -94,8 +95,8 @@ const combineLayers = async ( layers, finished ) => {
 };
 
 const checkForBuildDir = async ( config ) => {
-	if (!fs.existsSync("./build/"){
-    	fs.mkdirSync("./build/");
+	if (!fs.existsSync("./build/")){
+    	fs.mkdirSync("./build/")
 	};
 	if (!fs.existsSync("./build/"+config.collection)){
     	fs.mkdirSync("./build/"+config.collection);
