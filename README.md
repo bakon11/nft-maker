@@ -1,4 +1,4 @@
-# bakon-maker
+# NFT-maker
 Maker of logical NFTz
 
 This NFT Maker allows you to configure your layer folders with a few options like display name and order.
